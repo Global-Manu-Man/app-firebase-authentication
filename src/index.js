@@ -1,17 +1,39 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import WebFont from 'webfontloader';
+import Container from './elements/Container'
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+//import Login from './components/Login';
+//import RecoverPassword from './components/RecoverPassword';
+//import UserRegistration from './components/UserRegistration';
+import {Helmet} from "react-helmet";
+import favicon from './images/Icon.png';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+WebFont.load({
+  google: {
+    families: ['Work Sans:400,500,700', 'sans-serif']
+  }
+});
+const Index = () =>{
+  return (
+    <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Pakal</title>
+          <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
+        </Helmet>
+         <BrowserRouter>
+           <Container>
+            <Routes>
+                <Route path="/index" element={<App/>}/>
+            </Routes>
+           </Container>
+         </BrowserRouter>
+    
+    </div>
+  );
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<React.StrictMode><Index /><App /></React.StrictMode>,document.getElementById('root'));

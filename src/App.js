@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Header from "./elements/Header";
+import Error404 from "./components/Error404";
+import Login from './components/Login';
+import RecoverPassword from './components/RecoverPassword';
+import UserRegistration from './components/UserRegistration';
+import MainContainer from './elements/MainContainer';
+import ElementMain from './elements/ElementMain';
+//import styled from 'styled-components';
 
-function App() {
+const App =()=>{
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+			<MainContainer>
+				<Header />
+				<ElementMain>
+					<Routes>
+					    <Route path="*"                element={<Error404/>} />
+						<Route path="/iniciar-sesion"  element={<Login/>} />
+						<Route path="/crear-cuenta"    element={<UserRegistration/>} />
+						<Route path="/recuperar"       element={<RecoverPassword/>} />
+					</Routes>
+				</ElementMain>
+			</MainContainer>
+		</BrowserRouter>
   );
 }
 
